@@ -45,7 +45,7 @@ function App() {
           width: '1200px',
           height: '1000px'
         }}
-        mapStyle="mapbox://styles/mapbox/navigation-day-v1"
+        mapStyle="mapbox://styles/mapbox/light-v11" /* https://docs.mapbox.com/api/maps/styles/ */
       >
         <NavigationControl
           showCompass={true}
