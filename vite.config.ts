@@ -7,10 +7,5 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  /* build: {
-    assetsDir: 'static',
-    copyPublicDir: true,
-  }, */
-  publicDir: 'src/assets',
   plugins: [react(), svgr()],
 });
