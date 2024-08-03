@@ -14,8 +14,8 @@ function App() {
 
   return (
     <>
-      <DaySun onClick={() => setTheme('day')} style={{ cursor: 'pointer' }} />
-      <NightMoon onClick={() => setTheme('night')} style={{ cursor: 'pointer' }} />
+      <DaySun onClick={() => setTheme('day')} style={{ cursor: 'pointer', position: 'absolute', right: 0, zIndex: 1 }} />
+      <NightMoon onClick={() => setTheme('night')} style={{ cursor: 'pointer', position: 'absolute', right: '20px', zIndex: 1 }} />
       <MapProvider>
         <Map
           ref={mapRef}
@@ -52,10 +52,8 @@ function App() {
           dragRotate={false}
           attributionControl={false}
           style={{
-            width: '1200px',
-            height: '1000px'
+            height: '100%',
           }}
-          // mapStyle="mapbox://styles/mapbox/light-v11" /* https://docs.mapbox.com/api/maps/styles/ */
           mapStyle={`mapbox://styles/mapbox/${theme === 'day' ? 'light' : 'dark'}-v11`}
         >
           <NavigationControl
