@@ -4,16 +4,33 @@ import { Map, MapProvider, MapRef, MapWheelEvent, Marker, NavigationControl } fr
 import './App.css';
 import DaySun from './assets/day-sun.svg?react';
 import NightMoon from './assets/night-moon.svg?react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const accessToken: string = (import.meta.env.VITE_MAP_BOX_ACCESS_TOKEN || '').trim();
 
 function App() {
   const mapRef = useRef<MapRef>(null);
   const [theme, setTheme] = useState<'day' | 'night'>('night');
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <>
+      <div style={{ minWidth: '10%', display: isMobile ? 'none' : 'flex' }}>
+        왼쪽 프레임
+      </div>
       <DaySun onClick={() => setTheme('day')} style={{ cursor: 'pointer', position: 'absolute', right: 0, zIndex: 1 }} />
       <NightMoon onClick={() => setTheme('night')} style={{ cursor: 'pointer', position: 'absolute', right: '20px', zIndex: 1 }} />
       <MapProvider>
